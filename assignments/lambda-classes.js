@@ -26,6 +26,13 @@ class Instructor extends Person {
   grade(student, subject) {
     return `${student.name} receives a passing grade on ${subject}.`;
   }
+  getRandomGrade(student, min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return (
+      student.grade + Math.round(Math.floor(Math.random() * (max - min))) + min
+    );
+  }
 }
 
 //child of Person ^
@@ -36,6 +43,7 @@ class Student extends Person {
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
+    this.grade = attributes.grade;
   }
 
   PRAssignment(subject) {
@@ -93,6 +101,7 @@ const greggor = new Student({
   previousBackground: "Unemployed",
   favLanguage: "JavaScript",
   specialty: "Front-end",
+  grade: 50,
   favSubjects: (subjectArray = [
     "Lunch",
     "Breaktime",
@@ -108,6 +117,7 @@ const alexander = new Student({
   previousBackground: "Supermarket Cashier",
   favLanguage: "C#",
   specialty: "CSS",
+  grade: 80,
   favSubjects: ["Lunch", "Breaktime", "Recess", "Social Studies"]
 });
 
@@ -140,5 +150,7 @@ console.log(fred.grade(greggor, "Web Fundementals"));
 console.log(bethany.demo("design"));
 
 greggor.listsSubjects();
+
+console.log(bethany.getRandomGrade(greggor, 1, 5));
 
 //console.log(PRAssignment(Lunch));
